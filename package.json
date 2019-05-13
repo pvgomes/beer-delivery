@@ -1,0 +1,29 @@
+{
+  "name": "beer-delivery",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "a beer delivery app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "jest --verbose",
+    "test-ci": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pvgomes/beer-delivery"
+  },
+  "author": "pvgomes",
+  "dependencies": {
+    "config": "^1.29.4",
+    "express": "4.16.4",
+    "mongoose": "5.4.19",
+    "dotenv": "^7.0.0",
+    "joi": "13.1.*",
+    "helmet": "3.18.0"
+  },
+  "devDependencies": {
+    "nodemon": "1.19.*",
+    "jest": "24.6"
+  }
+}
