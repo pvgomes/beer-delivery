@@ -1,0 +1,40 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017"
+    networks:
+      - production-network
+  dump:
+    build: ./docker/dump
+    depends_on:
+      - "mongodb"
+    networks:
+      - production-network
+  nginx:
+    build: ./docker/nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+    networks:
+      - production-network
+    depends_on:
+      - "app"
+  app:
+    build:
+      dockerfile: ./docker/app/Dockerfile
+      context: .
+    container_name: app
+    volumes:
+      - .:/app
+    ports:
+      - "5000"
+    networks:
+      - production-network
+    depends_on:
+      - "mongodb"
+networks:
+  production-network:
+    driver: bridge
