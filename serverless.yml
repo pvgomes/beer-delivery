@@ -1,0 +1,23 @@
+service: beer-delivery
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: prod
+  region: us-east-1
+  environment:
+    db: mongodb://mongodb:27017/beer-delivery
+
+functions:
+  app:
+    handler: lambda.bootstrap
+    Events:
+        HttpRoot:
+            Type: Api
+            Properties:
+                Path: /
+                Method: ANY
+        HttpSubPaths:
+            Type: Api
+            Properties:
+                Path: /{proxy+}
+                Method: ANY

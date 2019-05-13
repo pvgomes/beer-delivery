@@ -68,3 +68,12 @@ curl -X GET http://127.0.0.1/api/pdvs/{ID}
 
 ### Deployment
 `WIP`
+The idea here is to use AWS Lambda with API Gateway, thats why we use [serverless framework](https://serverless.com/)
+
+- Make sure that your aws credentials is defined
+- Update the config to your MongoDB place
+- Use serverless to deploy
+
+```
+sls deploy
+```
