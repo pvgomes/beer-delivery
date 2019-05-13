@@ -2,6 +2,7 @@
 const app = require('./app')
 
 module.exports.bootstrap = async (event, context) => {
+
   return {
     statusCode: 200,
     body: JSON.stringify({

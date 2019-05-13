@@ -19,7 +19,9 @@ docker-compose up -d
 ```
 
 ### Tests
-`docker exec -it app npm test`
+```
+docker exec -it app npm test
+```
 
 ### Api
 

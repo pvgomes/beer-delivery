@@ -27,8 +27,8 @@ services:
       dockerfile: ./docker/app/Dockerfile
       context: .
     container_name: app
-    # volumes:
-    #   - .:/app
+    volumes:
+      - .:/app
     ports:
       - "5000"
     networks:
