@@ -1,3 +1,4 @@
 {
+  "server_port": 5000,
   "db": "mongodb://mongodb:27017/beer-delivery"
 }

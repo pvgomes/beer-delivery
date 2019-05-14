@@ -1,3 +1,4 @@
 {
-  "db": "mongodb://localhost:27017/beer-delivery_test"
+  "server_port": 4000,
+  "db": "mongodb://mongodb:27017/beer-delivery_test"
 }

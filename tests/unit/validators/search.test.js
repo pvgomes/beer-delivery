@@ -1,4 +1,4 @@
-const SearchValidator = require('../../lib/validators/search');
+const SearchValidator = require('../../../lib/validators/search');
 
 describe('search validator', () => {
 

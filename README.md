@@ -18,12 +18,12 @@ Install [Docker](https://docs.docker.com/install/)  and [Docker-compose](https:/
 docker-compose up -d
 ```
 
-### Tests
+### Tests (Unit and Integration)
 ```
 docker exec -it app npm test
 ```
 
-### Api
+### Endpoints
 
 Search
 ```
@@ -72,10 +72,12 @@ curl -X GET http://127.0.0.1/api/pdvs/{ID}
 `WIP`
 The idea here is to use AWS Lambda with API Gateway, thats why we use [serverless framework](https://serverless.com/)
 
+- Install [serverless framework](https://serverless.com/) with npm
 - Make sure that your aws credentials is defined
 - Update the config to your MongoDB place
-- Use serverless to deploy
 
+
+#### Deploy
 ```
 sls deploy
 ```

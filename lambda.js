@@ -1,14 +1,6 @@
-'use strict';
+'use strict'
+const awsServerlessExpress = require('aws-serverless-express')
 const app = require('./app')
+const server = awsServerlessExpress.createServer(app)
 
-module.exports.bootstrap = async (event, context) => {
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'WIP, handle app.js',
-      input: event,
-    }),
-  };
-
-};
+exports.handler = (event, context) => { awsServerlessExpress.proxy(server, event, context) }

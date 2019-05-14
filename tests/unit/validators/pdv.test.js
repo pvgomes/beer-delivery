@@ -1,4 +1,4 @@
-const PdvValidator = require('../../lib/validators/pdv');
+const PdvValidator = require('../../../lib/validators/pdv');
 
 describe('pdv validator', () => {
 
