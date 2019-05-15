@@ -7,7 +7,7 @@
   "scripts": {
     "start": "nodemon app.js",
     "test": "jest --verbose --config ./tests/jest.json",
-    "test-ci": "jest"
+    "test-ci": "jest --config ./tests/jest.json --testPathIgnorePatterns spec.js"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,4 @@
 {
-  "testRegex": ".*.test.js",
+  "testRegex": ".*.(test|spec).js",
   "testEnvironment": "node"
 }

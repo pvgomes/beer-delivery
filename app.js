@@ -22,6 +22,6 @@ app.use(function(req, res) {
 
 const port = config.get('server_port') || 5000;
 
-const server = app.listen(port, () => console.log(`Listening on port ${port}...`));
+const server = app.listen(port);
 
 module.exports = server;

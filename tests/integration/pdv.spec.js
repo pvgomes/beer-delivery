@@ -6,13 +6,14 @@ let server;
 
 describe('/api/pdvs', () => {
   beforeEach(() => { server = require('../../app'); });
-  afterEach(async () => {
+  afterEach(async (done) => {
     server.close();
     await Pdv.deleteMany({});
+    done();
   });
 
   describe('GET /', () => {
-    it('should return all pdvs', async () => {
+    it('should return all pdvs', async (done) => {
       const pdvs = [
         {
            "address":{
@@ -85,9 +86,10 @@ describe('/api/pdvs', () => {
       expect(res.body.length).toBe(2);
       expect(res.body.some(pdv => pdv.document === '04.433.714/0001-44')).toBeTruthy();
       expect(res.body.some(pdv => pdv.document === '04666182390')).toBeTruthy();
+      done();
     });
 
-    it('should get pdv by hash', async () => {
+    it('should get pdv by hash', async (done) => {
 
       const pdv = new Pdv({
          "address":{
@@ -124,15 +126,17 @@ describe('/api/pdvs', () => {
 
       expect(res.status).toBe(200);
       expect(res.body).toHaveProperty('tradingName', pdv.tradingName);
+      done();
     });
 
-    it('should return 404 if no pdv with the given id exists', async () => {
+    it('should return 404 if no pdv with the given id exists', async (done) => {
       const id = mongoose.Types.ObjectId();
       const res = await request(server).get('/api/pdvs/' + id);
       expect(res.status).toBe(404);
+      done();
     });
 
-    it('should return near pdv by search', async () => {
+    it('should return near pdv by search', async (done) => {
       const pdvs = [
         {
            "address":{
@@ -318,9 +322,10 @@ describe('/api/pdvs', () => {
       const res = await request(server).get('/api/search?lng=-46.474983&lat=-23.610245');
 
       expect(res.status).toBe(200);
+      done();
     });
 
-    it('should return 404 when not found a near pdv by search', async () => {
+    it('should return 404 when not found a near pdv by search', async (done) => {
       const pdvs = [
         {
            "address":{
@@ -358,11 +363,12 @@ describe('/api/pdvs', () => {
       const res = await request(server).get('/api/search?lng=-61.908053&lat=-15.358356');
 
       expect(res.status).toBe(404);
+      done();
     });
   });
 
   describe('POST /',() => {
-    it('should return 201 when pdv is complete', async () => {
+    it('should return 201 when pdv is complete', async (done) => {
       const res = await request(server)
         .post('/api/pdvs')
         .send({
@@ -392,9 +398,10 @@ describe('/api/pdvs', () => {
             });
 
         expect(res.status).toBe(201);
+        done();
     });
 
-    it('should return 400 when pdv is without document, coverageArea and address', async () => {
+    it('should return 400 when pdv is without document, coverageArea and address', async (done) => {
       const res = await request(server)
         .post('/api/pdvs')
         .send({
@@ -406,9 +413,10 @@ describe('/api/pdvs', () => {
         expect(res.body.some(result => result.message === '\"document\" is required')).toBeTruthy();
         expect(res.body.some(result => result.message === '\"address\" is required')).toBeTruthy();
         expect(res.body.some(result => result.message === '\"coverageArea\" is required')).toBeTruthy();
+        done();
     });
 
-    it('should return 400 when pdv is empty', async () => {
+    it('should return 400 when pdv is empty', async (done) => {
       const res = await request(server)
         .post('/api/pdvs')
         .send({});
@@ -419,6 +427,7 @@ describe('/api/pdvs', () => {
         expect(res.body.some(result => result.message === '\"coverageArea\" is required')).toBeTruthy();
         expect(res.body.some(result => result.message === '\"tradingName\" is required')).toBeTruthy();
         expect(res.body.some(result => result.message === '\"ownerName\" is required')).toBeTruthy();
+        done();
     });
 
   });
